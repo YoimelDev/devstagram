@@ -20,7 +20,7 @@
                 <a class="font-bold uppercase text-gray-600 text-sm" href="#">
                     Login
                 </a>
-                <a class="font-bold uppercase text-gray-600 text-sm" href="/createAccount">
+                <a href="{{route('register')}}" class="font-bold uppercase text-gray-600 text-sm" >
                     Crear Cuenta
                 </a>
             </nav>
