@@ -11,8 +11,14 @@
         </div>
 
         <div class="md:w-4/12 bg-white p-6 rounded shadow-xl">
-            <form >
-                @csrf  
+            <form action="{{ route('login') }}" method="POST" novalidate>
+                @csrf
+                
+                @if(session('mensaje'))
+                <p class="bg-red-500 text-white p-2 my-2 rounded-lg text-sm text-center">
+                    {{ session('mensaje') }}
+                </p>
+                @endif
 
                 <div class="mb-5">
                     <label for="email" class="mb-2 block uppercase text-gray-500 font-bold">
