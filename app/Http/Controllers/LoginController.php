@@ -10,7 +10,7 @@ class LoginController extends Controller
     public function index()
     {
         if (auth()->user()) {
-            return redirect()->route('posts.index');
+            return redirect()->route('posts.index', [auth()->user()->username]);
         } else {
             return view('auth.login');
         }
