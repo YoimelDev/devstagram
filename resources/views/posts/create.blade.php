@@ -13,7 +13,7 @@
         <div class="md:w-1/2 px-10">
             <form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data" id="dropzone"
                 class="dropzone border-dashed border-2 w-full h-96 rounded flex flex-col justify-center items-center">
-
+                @csrf
             </form>
         </div>
 
