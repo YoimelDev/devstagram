@@ -11,9 +11,9 @@ const dropzone = new Dropzone("#dropzone", {
     uploadMultiple: false,
 });
 
-// dropzone.on("sending", function (file, xhr, formData) {
-//     console.log(file);
-// });
+dropzone.on("success", function (file, response) {
+    document.querySelector('[name="image"]').value = response.image;
+});
 
 dropzone.on("error", function (file, message) {
     console.log(message);
