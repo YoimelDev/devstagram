@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
@@ -19,5 +20,10 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class)->select(['name', 'username']);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
