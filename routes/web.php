@@ -4,6 +4,7 @@ use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
@@ -38,3 +39,7 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.
 Route::post('/{user:username}/posts/{post}', [CommentController::class, 'STORE'])->name('comments.store');
 
 Route::post('/images', [ImageController::class, 'store'])->name('images.store');
+
+
+// Like a las fotos
+Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store');
