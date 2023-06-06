@@ -33,12 +33,12 @@
                 </div>
 
                 <p class="text-gray-800 text-sm mb-3 font-bold mt-5">
-                    0
-                    <span class="font-normal">Seguidores</span>
+                    {{ $user->followers->count() }}
+                    <span class="font-normal">@choice('Seguidor|Seguidores', $user->followers->count())</span>
                 </p>
 
                 <p class="text-gray-800 text-sm mb-3 font-bold">
-                    0
+                    {{ $user->followings->count() }}
                     <span class="font-normal">Siguiendo</span>
                 </p>
 
@@ -46,11 +46,33 @@
                     {{ $user->posts->count() }}
                     <span class="font-normal">Posts</span>
                 </p>
+
+                @auth
+                    @if ($user->id !== auth()->user()->id)
+                        @if ($user->isFollowing(auth()->user()))
+                            <form action="{{ route('users.unfollow', $user) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit"
+                                    class="bg-red-600 text-white text-xs cursor-pointer uppercase font-bold py-2 px-4 rounded-lg"
+                                    value="dejar de seguir" />
+                            </form>
+                        @else
+                            <form action="{{ route('users.follow', $user) }}" method="POST">
+                                @csrf
+                                <input type="submit"
+                                    class="bg-blue-600 text-white text-xs cursor-pointer uppercase font-bold py-2 px-4 rounded-lg"
+                                    value="Seguir" />
+                            </form>
+                        @endif
+                    @endif
+                @endauth
             </div>
         </div>
     </div>
 
-    <section class="container mx-auto mt-10">
+    <section class="container
+                        mx-auto mt-10">
         <h2 class="text-4xl text-center font-black my-10">Publicaciones</h2>
 
         @if ($posts->count())
